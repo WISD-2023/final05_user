@@ -43,6 +43,7 @@ class CommentsController extends Controller
         
         $comment->save();  
         $ArticleName = $request['ArticleName'];
+        session()->flash('success', '新增成功');
         return redirect(route('Article', ['articleName' => $ArticleName]));
     }
 
@@ -79,6 +80,7 @@ class CommentsController extends Controller
         $Comment = Comments::Where('id','=',$request['CommentID'])->first();
         $Comment->update($validated);
         $Article = Article::Where('id','=',$Comment->article_id)->first();
+        session()->flash('success', '修改成功');
         return redirect(route('Article', ['articleName' => $Article->Name]));
          
     }
@@ -91,6 +93,7 @@ class CommentsController extends Controller
         $Comment = Comments::Where('id','=',$request['CommentID'])->first();
         $Article = Article::Where('id','=',$Comment->article_id)->first();
         $Comment->delete();
+        session()->flash('success', '刪除成功');
         return redirect(route('Article', ['articleName' => $Article->Name]));
     }
 }

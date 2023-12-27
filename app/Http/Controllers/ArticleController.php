@@ -39,7 +39,7 @@ class ArticleController extends Controller
     $article->Content = $validated['comment'];
     //Auth::user()->id
     $article->save();
-
+    session()->flash('success', '新增成功');
     $forumName = $request['fourname'];
     return redirect(route('Forum', ['forumName' => $forumName]));
    }
@@ -59,7 +59,8 @@ class ArticleController extends Controller
        $article = Article::where('id','=',$articleID)->first();
        $article->update($validated);
        $articleName = $request['ArticleName'];
-
+       
+       session()->flash('success', '修改成功');
        return redirect(route('Article', ['articleName' => $articleName]));
    }
    public function destroy(Request $request): RedirectResponse
@@ -72,7 +73,7 @@ class ArticleController extends Controller
         $forumName = $forum->forum_name;
         $article->delete();
         
-        
+        session()->flash('success', '刪除成功');
         return redirect(route('Forum', ['forumName' => $forumName]));
    }
 }

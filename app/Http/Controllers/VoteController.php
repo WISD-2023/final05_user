@@ -42,6 +42,7 @@ class VoteController extends Controller
         $Vote->Result = '尚未通過';
 
         $Vote->save();
+        session()->flash('success', '新增成功');
         return redirect(route('dashboard'));
     }
 

@@ -42,8 +42,10 @@ class ReportController extends Controller
             $report->Com_id = Auth::user()->id;
             $report->Reason = $validated['Reason'];
             $report->Acc_id = $AccMember->id;
+            $report->is_handle = false;
 
             $report->save();
+            session()->flash('success', '舉發成功');
 
             return redirect(route('dashboard'));
         }

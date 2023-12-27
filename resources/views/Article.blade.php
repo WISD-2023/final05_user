@@ -1,5 +1,7 @@
 @php
 use App\Models\Article;
+use App\Models\User;
+use App\Models\admministrator;
 use Illuminate\Support\Facades\Auth;
 @endphp
 @if (Auth::check())
@@ -7,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 @else
     @include('layouts.navigation01')
 @endif
+
+@if(session('success'))
+    <script>
+        alert("{{ session('success') }}");
+    </script>
+@endif 
 <x-app-layout>
     <x-slot name="header"> <!--文章標題-->
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -21,7 +29,9 @@ use Illuminate\Support\Facades\Auth;
                     $article = Article::where('Name','=',$articleName)->first();
                     $ArticleID = $article->id;
                     $ArticleName = $article->Name;
-                    $member = \App\Models\User::find($article->members_id);
+
+                        $member = User::find($article->members_id);
+    
                     @endphp
                     <div class="flex-1">
                         <span class="text-gray-800">
@@ -64,7 +74,7 @@ use Illuminate\Support\Facades\Auth;
                     @endif
                 </div>
                 <div class="ml-4">
-                    <p class="ml-4 mb-4">{{$article->Content}}</p>
+                    <p class="ml-4 mb-4">{!! nl2br(e($article->Content)) !!}</p>
                 </div>
             </div>
         </div>

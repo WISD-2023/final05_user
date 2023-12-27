@@ -6,6 +6,12 @@ use App\Models\Forum;
 @else 
     @include('layouts.navigation01')
 @endif
+
+@if(session('success'))
+    <script>
+        alert("{{ session('success') }}");
+    </script>
+@endif 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">

@@ -29,6 +29,13 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user();
+        // 檢查用戶是否被封鎖
+        if ($user->is_blocked) {
+            auth()->logout(); // 登出用戶
+            return redirect()->route('Home'); // 導向封鎖頁面
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
