@@ -28,7 +28,7 @@ class ReportController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request)  //儲存檢舉資訊
     {
         $validated = $request->validate([
             'Acc_Name' => 'required|string|max:255', //被檢舉者id

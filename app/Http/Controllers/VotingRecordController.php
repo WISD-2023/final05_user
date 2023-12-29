@@ -26,7 +26,7 @@ class VotingRecordController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) // 紀錄該使用者已投票的資訊
     {
         $voting_record = new voting_record();
         $voting_record->members_id = Auth::user()->id;

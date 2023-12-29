@@ -33,6 +33,7 @@ class AuthenticatedSessionController extends Controller
         // 檢查用戶是否被封鎖
         if ($user->is_blocked) {
             auth()->logout(); // 登出用戶
+            session()->flash('success', '你已被封鎖');
             return redirect()->route('Home'); // 導向封鎖頁面
         }
 

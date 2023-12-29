@@ -1,31 +1,31 @@
-@include('layouts.navigation')
-@php 
+@include('layouts.navigation')  <!-- 引入導引列 -->
+@php    <!-- 引入各個模型 -->
     use App\Models\Vote;
     use App\Models\voting_record;
     use Illuminate\Support\Facades\Auth;
 @endphp
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="header"> <!-- 顯示頁面主題 -->
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             投票清單
         </h2>
     </x-slot>
     @foreach (Vote::all() as $vote)
-    <div class="py-1">
+    <div class="py-1">   <!-- 顯示投票清單 -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <h1 class = "text-xl">{{$vote->Title}}</h1>
+                    <h1 class = "text-xl">{{$vote->Title}}</h1>   <!-- 顯示投票標題 -->
                     <br>
                     <div class = "flex">
-                        <p class = "flex-1">{{$vote->Content}}</p>
-                        <p class = "flex-1">{{$vote->Total_vote}}</p>
-                        <p class = "flex-1">{{$vote->Result}}</p>
-                        @php
+                        <p class = "flex-1">{{$vote->Content}}</p>  <!-- 顯示投票內容 -->
+                        <p class = "flex-1">{{$vote->Total_vote}}</p>   <!-- 顯示總票數 -->
+                        <p class = "flex-1">{{$vote->Result}}</p>   <!-- 顯示投票結果 -->
+                        @php  <!-- 搜尋投票紀錄以決定要顯示以投票還是未投票 -->
                           $voteid = $vote->id;
                           $voteRecords = voting_record::Where('vote_id','=',$voteid)->first();                          
                         @endphp
-                        @if($voteRecords  && $voteRecords->members_id == Auth::user()->id) 
+                        @if($voteRecords  && $voteRecords->members_id == Auth::user()->id) <!-- 查詢是否已投票 -->
                             <x-primary-button>已投票</x-primary-button>                        
                         @else
                             <form method="POST" action="{{route('Vote.update')}}">

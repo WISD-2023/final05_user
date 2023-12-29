@@ -1,11 +1,12 @@
-@include('layouts.navigation')
+@include('layouts.navigation')  <!-- 引入導引列 -->
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="header">  <!-- 顯示頁面主題 -->
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             發起投票
         </h2>
     </x-slot>
-    <div class="py-12">
+
+    <div class="py-12">   <!-- 填寫區塊 -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">

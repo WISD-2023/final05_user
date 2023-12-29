@@ -20,7 +20,7 @@ class VoteController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create()  //顯示創建投票表單
     {
         return view('CreateVote');
     }
@@ -28,7 +28,7 @@ class VoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request)  //儲存投票操作
     {
         $validated = $request->validate([
             'votetitle' => 'required|string|max:255',
@@ -49,7 +49,7 @@ class VoteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show()  //顯示投票清單
     {
         return view('VotelistShow');
     }
@@ -65,7 +65,7 @@ class VoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request)  //更新投票操作(增加投票票數)
     {
         $vote = Vote::where('id','=',$request['VoteID'])->first();
         $vote->Total_vote+=1;

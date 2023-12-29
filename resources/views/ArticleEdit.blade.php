@@ -1,12 +1,12 @@
-@include('layouts.navigation')
-@php
+@include('layouts.navigation')  <!-- 引入導引列 -->
+@php <!-- 引入Article模型以搜尋文章 -->
     use App\Models\Article;  
     $article = Article::where('Name','=',$articleName)->first();
     $ArticleComment = $article->Content;
     $ArticleName = $article->Name;
     $ArticleID = $article->id;
 @endphp
-<x-app-layout>
+<x-app-layout>    <!-- 填寫區塊 -->
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
         <form method="POST" action="{{route('Article.update')}}">            
             @csrf

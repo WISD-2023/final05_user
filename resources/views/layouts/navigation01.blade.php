@@ -1,3 +1,4 @@
+<!-- 訪客導引列 -->
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 flex">
     <!-- Primary Navigation Menu -->
     <div class = "flex-1">

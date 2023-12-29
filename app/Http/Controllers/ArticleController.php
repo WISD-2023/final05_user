@@ -12,7 +12,7 @@ use Illuminate\Contracts\View\View;
 
 class ArticleController extends Controller
 {
-    public function create($fourmID)
+    public function create($fourmID)   //顯示創建文章頁面
     {
          return view('ArticleCreate',['fourmID' => $fourmID]);
     }
@@ -24,7 +24,7 @@ class ArticleController extends Controller
    // {
    //     return view('ArticleCreate');
    // }
-   public function store(Request $request): RedirectResponse
+   public function store(Request $request): RedirectResponse  //創建文章操作
    {
     //
     $validated = $request->validate([
@@ -44,12 +44,12 @@ class ArticleController extends Controller
     return redirect(route('Forum', ['forumName' => $forumName]));
    }
 
-   public function edit(String $title): View
+   public function edit(String $title): View  //顯示更新文章表單頁面
    {
     return view('ArticleEdit',['articleName' => $title]);
    }
 
-   public function update(Request $request): RedirectResponse
+   public function update(Request $request): RedirectResponse    //更新文章操作
    {       
        
        $validated = $request->validate([
@@ -63,7 +63,7 @@ class ArticleController extends Controller
        session()->flash('success', '修改成功');
        return redirect(route('Article', ['articleName' => $articleName]));
    }
-   public function destroy(Request $request): RedirectResponse
+   public function destroy(Request $request): RedirectResponse  //刪除文章操作
    {
         //
         $articleID = $request['ArticleID'];

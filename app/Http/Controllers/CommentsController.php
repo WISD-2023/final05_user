@@ -30,7 +30,7 @@ class CommentsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse  //儲存留言操作
     {
         $validated = $request->validate([
             'Content' => 'required|string|max:255',
@@ -58,7 +58,7 @@ class CommentsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request) :view
+    public function edit(Request $request) :view  //顯示更新留言表單頁面
     {
         $commentID = $request['CommentID'];
         $commentContent = $request['CommentContent'];
@@ -71,7 +71,7 @@ class CommentsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request): RedirectResponse
+    public function update(Request $request): RedirectResponse  //更新留言操作
     {
         $validated = $request->validate([
             'Content' => 'required|string|max:255',
@@ -88,7 +88,7 @@ class CommentsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request): RedirectResponse  //刪除留言操作
     {
         $Comment = Comments::Where('id','=',$request['CommentID'])->first();
         $Article = Article::Where('id','=',$Comment->article_id)->first();

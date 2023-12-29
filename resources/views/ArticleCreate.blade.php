@@ -1,17 +1,17 @@
-@include('layouts.navigationgeneral')
+@include('layouts.navigationgeneral')   <!-- 引入導引列 -->
 
-@php
-use App\Models\Forum;
-$Forum = Forum::where('id','=',$fourmID)->first();
-$ForumName = $Forum->forum_name;
+@php   <!-- 引入Forum模型以搜尋討論區 -->
+    use App\Models\Forum;
+    $Forum = Forum::where('id','=',$fourmID)->first();
+    $ForumName = $Forum->forum_name;
 @endphp
-<x-app-layout>
-    <x-slot name="header">
+<x-app-layout>  
+    <x-slot name="header">  <!-- 顯示討論區名稱 -->
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{$ForumName}}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-12">   <!-- 填寫區塊 -->
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
