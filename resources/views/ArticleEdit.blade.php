@@ -1,5 +1,7 @@
 @include('layouts.navigation')  <!-- 引入導引列 -->
-@php <!-- 引入Article模型以搜尋文章 -->
+
+<!-- 引入Article模型以搜尋文章 -->
+@php 
     use App\Models\Article;  
     $article = Article::where('Name','=',$articleName)->first();
     $ArticleComment = $article->Content;

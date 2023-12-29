@@ -1,5 +1,6 @@
 @include('layouts.navigation')  <!-- 引入導引列 -->
-@php    <!-- 引入各個模型 -->
+<!-- 引入各個模型 -->
+@php    
     use App\Models\Vote;
     use App\Models\voting_record;
     use Illuminate\Support\Facades\Auth;
@@ -21,11 +22,14 @@
                         <p class = "flex-1">{{$vote->Content}}</p>  <!-- 顯示投票內容 -->
                         <p class = "flex-1">{{$vote->Total_vote}}</p>   <!-- 顯示總票數 -->
                         <p class = "flex-1">{{$vote->Result}}</p>   <!-- 顯示投票結果 -->
-                        @php  <!-- 搜尋投票紀錄以決定要顯示以投票還是未投票 -->
+                        <!-- 搜尋投票紀錄以決定要顯示以投票還是未投票 -->
+                        @php  
                           $voteid = $vote->id;
                           $voteRecords = voting_record::Where('vote_id','=',$voteid)->first();                          
                         @endphp
-                        @if($voteRecords  && $voteRecords->members_id == Auth::user()->id) <!-- 查詢是否已投票 -->
+
+                        <!-- 查詢是否已投票 -->
+                        @if($voteRecords  && $voteRecords->members_id == Auth::user()->id) 
                             <x-primary-button>已投票</x-primary-button>                        
                         @else
                             <form method="POST" action="{{route('Vote.update')}}">

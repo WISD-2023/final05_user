@@ -1,6 +1,7 @@
 @include('layouts.navigationgeneral')   <!-- 引入導引列 -->
 
-@if(session('success'))  <!-- 判斷是否有回傳訊息以顯示提示視窗 -->
+<!-- 判斷是否有回傳訊息以顯示提示視窗 -->
+@if(session('success'))  
     <script>
         alert("{{ session('success') }}");
     </script>

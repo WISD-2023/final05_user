@@ -1,6 +1,7 @@
 @include('layouts.navigationgeneral')   <!-- 引入導引列 -->
 
-@php   <!-- 引入Forum模型以搜尋討論區 -->
+<!-- 引入Forum模型以搜尋討論區 -->
+@php   
     use App\Models\Forum;
     $Forum = Forum::where('id','=',$fourmID)->first();
     $ForumName = $Forum->forum_name;

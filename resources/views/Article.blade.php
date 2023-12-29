@@ -1,18 +1,21 @@
-@php    <!-- 引入各種模型與其他東西 -->
+ <!-- 引入各種模型與其他東西 -->
+@php   
     use App\Models\Article;
     use App\Models\User;
     use App\Models\admministrator;
     use Illuminate\Support\Facades\Auth;
 @endphp
 
-@if (Auth::check())    <!-- 判斷是否有登入已決定要引入哪個導引列 -->
+<!-- 判斷是否有登入已決定要引入哪個導引列 -->
+@if (Auth::check())    
     @include('layouts.navigation_article')
 @else
     @include('layouts.navigation01')
 @endif
 
-@if(session('success'))    <!-- 判斷是否有回傳訊息以顯示提示視窗 -->
-    <script>
+<!-- 判斷是否有回傳訊息以顯示提示視窗 -->
+<script>
+@if(session('success'))    
         alert("{{ session('success') }}");
     </script>
 @endif 
@@ -26,12 +29,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg ">
                 <div class="p-6 text-gray-900 flex">
-                    @php  <!-- 用傳入的文章名稱以搜尋文章 -->
+                    <!-- 用傳入的文章名稱以搜尋文章 -->
+                    @php  
                     $article = Article::where('Name','=',$articleName)->first();
                     $ArticleID = $article->id;
                     $ArticleName = $article->Name;
 
-                        $member = User::find($article->members_id);    <!-- 用文章資料表的外來鍵以搜尋使用者 -->
+                        $member = User::find($article->members_id);    
     
                     @endphp
 
@@ -44,10 +48,12 @@
                         </small>
                     </div>
                     
-                    @unless ($article->created_at->eq($article->updated_at)) <!-- 判斷創立時間是否大於更新時間 -->
+                    <!-- 判斷創立時間是否大於更新時間 -->
+                    @unless ($article->created_at->eq($article->updated_at)) 
                     @endunless
 
-                    @if (Auth::check() && $article->members_id==Auth::user()->id)  <!-- 判斷不是現在登入的使用者創立的文章 -->
+                    <!-- 判斷不是現在登入的使用者創立的文章 -->
+                    @if (Auth::check() && $article->members_id==Auth::user()->id)  
                     <x-dropdown> <!-- 顯示編輯選單 -->
                         <x-slot name="trigger">
                             <button>
@@ -123,18 +129,21 @@
                         $Comment = \App\Models\Comments::where('article_id','=',$articleID)->get();
                     @endphp
 
-                    @if($Comment->count() > 0)  <!-- 判斷留言數是否大於0 -->
+                    <!-- 判斷留言數是否大於0 -->
+                    @if($Comment->count() > 0)  
 
                     @foreach ($Comment as $comment) 
                     @php
-                        $Member = \App\Models\User::find($comment->members_id);   <!-- 用留言資料表的外來鍵以搜尋使用者 -->
+                        $Member = \App\Models\User::find($comment->members_id);   
                     @endphp
                     <p><b>{{ $Member->name }}</b></p>  <!-- 顯示使用者名稱 -->
                     <div class="flex">
                         <p class="ml-4 flex-1">{{ $comment->Content }}</p>   <!-- 顯示留言 -->
-                        @unless ($comment->created_at->eq($comment->updated_at))  <!-- 判斷創立時間是否大於更新時間 -->
+                        <!-- 判斷創立時間是否大於更新時間 -->
+                        @unless ($comment->created_at->eq($comment->updated_at))  
                         @endunless
-                        @if (Auth::check() && $comment->members_id==Auth::user()->id)  <!-- 判斷是否登入以顯示編輯選單 -->
+                        <!-- 判斷是否登入以顯示編輯選單 -->
+                        @if (Auth::check() && $comment->members_id==Auth::user()->id)  
                         <x-dropdown>
                             <x-slot name="trigger">
                                 <button>
