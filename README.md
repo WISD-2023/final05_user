@@ -18,7 +18,7 @@
   投票清單
   ![](https://i.imgur.com/asYvsLK.jpeg)
 # 系統的主要功能
-  使用者端均為![3B032089 阮彥翔](https://github.com/3B032089)
+  使用者端均為[3B032089 阮彥翔](https://github.com/3B032089)
   * 首頁 Route::get('Home', [HomeConrtroller::class,'index'])->name('Home');
   * 討論區 Route::get('Forum/{forumName}', [ForumController::class,'show'])->name('Forum');
   * 文章 Route::get('Article/{articleName}', [ArticleController::class,'show'])->name('Article');
@@ -38,3 +38,23 @@
   * 新增投票紀錄 Route::get('VotingRecord/{VoteID}',[VotingRecordController::class,'store'])->name('VotingRecord.store');
   * 檢舉頁面 Route::get('ReportCreate',[ReportController::class,'create'])->name('Report.create');
   * 檢舉 Route::post('Report',[ReportController::class,'store'])->name('Report.store');
+# ERD
+   ![](https://i.imgur.com/bd0q2X7.jpg)
+# 關聯式綱要圖綱要圖
+   ![](https://i.imgur.com/fh2dE38.jpeg)
+   ![](https://i.imgur.com/io2SllQ.jpeg)
+# 初始專案與DB負責的同學
+   * 初始專案 [3B032089 阮彥翔](https://github.com/3B032089)
+   * DB [3B032080 謝東霖](https://github.com/3B032080)、[3B032089 阮彥翔](https://github.com/3B032089)
+# 系統測試資料存放位置
+   根目錄的forum
+# 系統使用者測試帳號
+   使用者端：
+      * 帳號：Yaesakura716207@gmail.com
+      * 密碼：Tsukasa716207
+   管理員端：
+      * 帳號：fuuzuki0307@gmail.com
+      * 密碼：Tsukasa1600
+# 系統開發人員與工作分配
+   * 使用者端：[3B032089 阮彥翔](https://github.com/3B032089)
+   * 管理員端：[3B032080 謝東霖](https://github.com/3B032080)
