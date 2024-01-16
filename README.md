@@ -17,3 +17,5 @@
   ![](https://i.imgur.com/dhZh9oX.jpeg)
   投票清單
   ![](https://i.imgur.com/asYvsLK.jpeg)
+# 系統的主要功能
+  使用者端均為![3B032089 阮彥翔]()
